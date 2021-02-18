@@ -5,12 +5,19 @@ import "./App.css";
 
 export default function Table({ columns, data }) {
 
-    const [filterInput, setFilterInput] = useState("");
+    const [filterShowInput, setFilterInput] = useState("");
+    const [filterGenreInput, setGenreInput] = useState("");
 
-    const handleFilterChange = e => {
-        const value = e.target.value || undefined;
-        setFilter("show.name", value);
-        setFilterInput(value);
+    const handleShowFilterChange = e => {
+        const valueShow = e.target.value || undefined;
+        setFilter("show.name", valueShow);
+        setFilterInput(valueShow);
+      };
+
+    const handleGenreFilterChange = e => {
+        const valueGenre = e.target.value || undefined;
+        setFilter("show.genres", valueGenre);
+        setGenreInput(valueGenre);
       };
 
 
@@ -32,10 +39,17 @@ export default function Table({ columns, data }) {
   return (
       <div>
         <input
-          id="searchBar"
-          value={filterInput}
-          onChange={handleFilterChange}
+          id="showSearchBar"
+          value={filterShowInput}
+          onChange={handleShowFilterChange}
           placeholder={"Search Tv show name"}
+        />
+
+        <input
+          id="genreSearchBar"
+          value={filterGenreInput}
+          onChange={handleGenreFilterChange}
+          placeholder={"Search genre"}
         />
 
         <table {...getTableProps()}>
